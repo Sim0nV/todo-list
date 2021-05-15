@@ -1,11 +1,28 @@
 import React from 'react'
 
 //use FUNCTIONAL components later
-const Form = () => {
+const Form = ({ setInputText, todos, setTodos, inputText }) => {
+    //write javascript code and function
+    const inputTextHandler = (e) => {    
+        console.log(e.target.value); //debug print
+        setInputText(e.target.value);
+    };
+    const submitTodoHandler = (e) => {
+        console.log("hey"); //debug print
+        e.preventDefault(); //So event doesn't do its default behavior of refreshing
+
+        // ...todos, -> Spread todos (if any todos already in the list, pass it)
+
+        //ids: LATER install package for UNIQUE number rather than random!! DEBUG
+        setTodos([
+            ...todos, {text: inputText, completed: false, id: Math.random() * 1000}
+        ]);
+        setInputText(''); //Clear input text once todo submitted
+    }
     return(
         <form>
-        <input type="text" className="todo-input" />
-        <button className="todo-button" type="submit">
+        <input value ={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
+        <button onClick={submitTodoHandler} className="todo-button" type="submit">
             <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
