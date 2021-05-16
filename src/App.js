@@ -14,13 +14,13 @@ function App() {
   const [status, setStatus] = useState('all'); //DEBUG rename to filterStatus?
   const [filteredTodos, setFilteredTodos] = useState([])
 
+
+  //Run once when the app start
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
   //USE EFFECT
   useEffect(() => {
-    filterHandler();
-  }, [todos, status]);
-
-  //Functions
-  const filterHandler = () => {
     switch(status) {
       case 'completed':
         setFilteredTodos(todos.filter(todo => todo.completed === true));
@@ -32,7 +32,20 @@ function App() {
         setFilteredTodos(todos);
         break;
     }
-  }
+    //Save local todos
+    //Pushing whatever we have in our state
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos, status]);
+
+  //Get if anything exists in local storage
+  const getLocalTodos = () => {
+    if(localStorage.getItem("todos") === null){
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
+    }
+  };
 
   return (
     <div className="App">
