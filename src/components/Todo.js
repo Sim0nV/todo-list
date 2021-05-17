@@ -1,33 +1,65 @@
 import React from 'react';
 
+// set Todo function to the variables of text, todo, todos, and setTodos
+/*
+ * Todo: Renders todo item's text, complete and trash buttons.
+ * Handles deleting/completing items when respective buttons clicked.
+ */
 const Todo = ({ text, todo, todos, setTodos }) => {
-    //Events
+
+    // deleteHandler: event function sets todos to all elements 
+    // except those that match the current todo's id
     const deleteHandler = () => {
-        setTodos(todos.filter((el) => el.id !== todo.id));
+        setTodos(todos.filter((element) => element.id !== todo.id));
     };
+    
+    // completeHandler: event function. if passed todo within todos
+    // array, marks it as complete 
     const completeHandler = () => {
+        
+        // Set todos to what map's arrow function returns:
         setTodos(todos.map((item) => {
-            if(item.id === todo.id) {
-                return { //return props of whatever id + toggle completed
-                    ...item, 
-                    completed: !item.completed
+
+            // For all items within todos array:
+
+            // If current item matches current todo's id:
+            if (item.id === todo.id) {
+
+                // return props of matching id, toggle completed flag
+                return { 
+
+                    ...item, // id, input text, other todo props
+                    completed: !item.completed // toggle
+
                 };
+
             }
-            return item; //If no matches, just return item w/ no changes
+
+            return item; // otherwise, just return item w/ no changes
+
         })
         );
+
     };
+    
+    //Render passed todo item with complete and delete buttons
     return(
-        <div className="todo"> {/* means: If passed todo completed, add the completed class. Else do nothing*/}
+
+        <div className="todo"> {/* $ means: If passed todo completed, 
+            add the completed class (strikethrough). Else do nothing */}
             <li className={`todo-item ${todo.completed ? "completed" : ""}`}>{text}</li>
-            <button onClick={completeHandler} className="complete-btn">
+            
+            {/* run completeHandler when complete button clicked */}
+            <button onClick={completeHandler} className="complete-btn">                
                 <i className="fas fa-check"></i>
             </button>
             <button onClick={deleteHandler} className="trash-btn">
                 <i className="fas fa-trash"></i>
             </button>
         </div>
+
     );
+
 };
 
 export default Todo;
