@@ -16,6 +16,7 @@ const Form = ({store}) => {
             inputText: e.target.value
         })
     };
+
     
     // submitTodoHandler: Event function adds contents of inputText state
     // to the todos array, then clears the inputText state
@@ -28,10 +29,13 @@ const Form = ({store}) => {
         setTodos([
             ...todos, {text: inputText, completed: false, id: Math.random() * 1000}
         ]);*/
+        
+        
+        //Add todo to todos array
 
         store.dispatch({
             type: 'ADD_TODO',
-            text: store.getState().inputText,
+            text: inputText,
             completed: false,
             id: Math.random() * 1000
         })
@@ -47,6 +51,7 @@ const Form = ({store}) => {
     // statusHandler: event function sets status state
     // to the passed event's target's value
     const statusHandler = (e) => {
+
         //setStatus(e.target.value);
 
         store.dispatch({
@@ -56,13 +61,11 @@ const Form = ({store}) => {
 
     };
 
-    var myString = "yes";
-
     return(
               
         <form>
         {/* sets the input value in the form while having an onChange to the input text handler */}
-        <input value ={store.getState().inputText} onChange={inputTextHandler} type="text" className="todo-input" />
+        <input value ={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
         
          {/* onClick button is set to the submit handler */}        
         <button onClick={submitTodoHandler} className="todo-button" type="submit">
