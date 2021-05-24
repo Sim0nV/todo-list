@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -7,17 +6,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { getLocalTodos, saveLocalTodos } from './localStorage.js';
 
-
-// initialize the initialState variable for input text, todos array, filter status, and filtered todos array
-const initialState = {
-  inputText: "",
-  todoArray: [],
-  filterStatus: 'all',
-  filteredTodos: []
-};
-
-
-//inputText reducer
+// inputText reducer
 const inputText = (state = "", action) => {
 
   switch(action.type) {
@@ -35,7 +24,7 @@ const inputText = (state = "", action) => {
 } 
   
 
-//filterStatus reducer
+// filterStatus reducer
 const filterStatus = (state = 'all', action) => {
 
   switch(action.type) {
@@ -60,7 +49,7 @@ const filterStatus = (state = 'all', action) => {
 
 }
 
-//Individual todo list items reducer
+// Individual todo list items reducer
 const todoItem = (state, action) => {
   
   switch (action.type) {
@@ -91,7 +80,7 @@ const todoItem = (state, action) => {
 
 }
 
-//todoArray reducer function
+// todoArray reducer function
 const todoArray = (state = [], action) => {
 
   switch (action.type) {
@@ -111,7 +100,7 @@ const todoArray = (state = [], action) => {
 
     case 'DELETE_TODO':
 
-      //Filter out the passed action.id, return filtered list
+      // Filter out the passed action.id, return filtered list
       return state.filter((t) => t.id !== action.id);
 
     default:
@@ -132,7 +121,7 @@ const todoArray = (state = [], action) => {
   * - Basically: Must pass the current todos array + curr filter status Every time
   */
 
-//filteredTodos reducer function
+// filteredTodos reducer function
 const filteredTodos = (state = [], action) => {
   
   /*
@@ -144,12 +133,12 @@ const filteredTodos = (state = [], action) => {
 
   //console.log("filteredTodos currFilterStatus: "+action.currFilterStatus); //debug print
 
-  //If filter status was changed by passed action, update currFilterStatus
+  // If filter status was changed by passed action, update currFilterStatus
 
-  //If todo added by passed action, update currTodos
+  // If todo added by passed action, update currTodos
 
 
-  //Update currTodos when todo list or filter status is changed
+  // Update currTodos when todo list or filter status is changed
   switch (action.type) {
 
     case 'ADD_TODO':
@@ -168,7 +157,7 @@ const filteredTodos = (state = [], action) => {
 
         //console.log("todo id: "+todo.id); //debug print
         //console.log("action id: "+todo.id); //debug print
-
+ 
         if (todo.id === action.id) {
           //console.log("completed: "+todo.completed); //debug prdebug print
           todo.completed = !todo.completed;
@@ -202,7 +191,7 @@ const filteredTodos = (state = [], action) => {
       
   }
 
-  //Update filtered todos array when todo list or filter status is changed
+  // Update filtered todos array when todo list or filter status is changed
   switch(action.currFilterStatus) {
 
     case 'all':
@@ -221,7 +210,7 @@ const filteredTodos = (state = [], action) => {
 
 }
 
-//Main reducer: calls other reducer functions
+// Main reducer: calls other reducer functions
 const todoReducer = (state = {}, action) => {
 
   return {
@@ -249,17 +238,17 @@ const todoReducer = (state = {}, action) => {
 
 }
 
-const persistedState = getLocalTodos();
+const persistedState = getLocalTodos(); // get locally stored todos if any
 
-//Create store using main reducer + initial state
-//3rd parameter for Redux Dev Tools extension usage
+// Create store using main reducer + initial state
+// 3rd parameter for Redux Dev Tools extension usage
 const store = createStore(
   todoReducer, 
   persistedState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-
+// When store changes, save todo arrays locally
 store.subscribe(() => {
   saveLocalTodos({
     todoArray: store.getState().todoArray,
@@ -267,7 +256,7 @@ store.subscribe(() => {
   });
 });
 
-//Wrap components with Provider
+// Wrap components with Provider
 ReactDOM.render(
   <Provider store={store}>
     <App />

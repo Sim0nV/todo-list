@@ -17,8 +17,6 @@ function App() {
       </header>
 
       {/* Render input form followed by todo list */}
-      {/* Pass required states into components */}
-
 
       <Form />
       <TodoList />

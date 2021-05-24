@@ -1,3 +1,6 @@
+/*
+ * getLocalTodos: Returns local todos from local storage if available
+ */
 export const getLocalTodos = () => {
     try {
       const todoArray = localStorage.getItem('state');
@@ -10,6 +13,9 @@ export const getLocalTodos = () => {
     }
   }; 
 
+  /*
+ * saveLocalTodos: Saves local todos from passed state if valid
+ */
 export const saveLocalTodos = (state) => {
 try {
     const todoArray = JSON.stringify(state);
