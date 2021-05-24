@@ -23,9 +23,8 @@ function App() {
   const [status, setStatus] = useState('all'); // state of current filtering status (all, completed, or uncompleted) DEBUG rename to filterStatus?
   const [filteredTodos, setFilteredTodos] = useState([]); // array of filtered todo list items based on status
 */
-  // initialize the initialState variable for input text, todos array, filter status, and the filtered todos
+  // initialize the initialState variable for todos array, filter status, and the filtered todos
   const initialState = {
-    inputText: "",
     todoArray: [],
     filterStatus: 'all',
     filteredTodos: []
@@ -33,22 +32,6 @@ function App() {
 
   //Add reducer function for individual todos
   //ex. complete todo, add todo, trash todo
-
-  //inputText reducer
-  const inputText = (state = "", action) => {
-    
-    switch(action.type) {
-      
-      case 'SET_INPUT_TEXT':
-        console.log("action.inputText: "+ action.inputText);
-        return action.inputText;
-
-      default:
-        return state; 
-
-    }
-
-  } 
   
   //filterStatus reducer
   const filterStatus = (state = 'all', action) => {
@@ -143,6 +126,30 @@ function App() {
   //filteredTodos reducer function
   const filteredTodos = (state = [], action) => {
     
+    /*
+    console.log("filteredTodos currTodos: "); //debug print
+    for (var i = 0; i < action.currTodos.length; i++) {
+      console.log(action.currTodos[i].text); //debug print
+    }
+    */
+
+    //console.log("filteredTodos currFilterStatus: "+action.currFilterStatus); //debug print
+
+    //If filter status was changed by passed action, update currFilterStatus
+    if (action.type === 'SET_FILTER_STATUS') {
+      action.currFilterStatus = action.filterStatus;
+    }
+
+    //If todo added by passed action, update currTodos
+    if (action.type === 'ADD_TODO') {
+      action.currTodos.push({
+        id: action.id,
+        text: action.text,
+        completed: false
+      }
+      )
+    }
+
     //Update filtered todos when todo list or filter status is changed
     switch (action.type) {
 
@@ -157,10 +164,10 @@ function App() {
             return action.currTodos;
 
           case 'completed':
-            return action.currTodos.filter(todo => todo.completed === false)
+            return action.currTodos.filter(todo => todo.completed === true)
 
           case 'uncompleted':
-            return action.currTodos.filter(todo => todo.completed === true)
+            return action.currTodos.filter(todo => todo.completed === false)
 
           default:
             return state;
@@ -179,10 +186,6 @@ function App() {
     return {
       todoArray: todoArray(
         state.todoArray,
-        action
-      ),
-      inputText: inputText(
-        state.inputText,
         action
       ),
       filterStatus: filterStatus(
@@ -290,6 +293,7 @@ function App() {
   */
 
   return (
+
 
     <div className="App">
       <header>

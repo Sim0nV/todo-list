@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from "react";
 
 /*
  * Form: Component renders input field and filtering dropdown.
@@ -6,16 +6,16 @@ import React from 'react'
  */
 const Form = ({store}) => {
     
+    const [inputText, setInputText] = useState(""); // holds text that is within the input form
+
     // inputTextHandler: Event function sets input text state to
     // the passed event's target's value
     const inputTextHandler = (e) => {    
-        //setInputText(e.target.value);
-        console.log("e.target.value: "+e.target.value);
-        store.dispatch({
-            type: 'SET_INPUT_TEXT',
-            inputText: e.target.value
-        })
+        setInputText(e.target.value);
+        
+        //console.log("e.target.value: "+e.target.value); //debug print
     };
+
     
     // submitTodoHandler: Event function adds contents of inputText state
     // to the todos array, then clears the inputText state
@@ -28,26 +28,28 @@ const Form = ({store}) => {
         setTodos([
             ...todos, {text: inputText, completed: false, id: Math.random() * 1000}
         ]);*/
+        
+        
+        //Add todo to todos array
 
         store.dispatch({
             type: 'ADD_TODO',
-            text: store.getState().inputText,
+            text: inputText,
             completed: false,
             id: Math.random() * 1000
         })
 
-        //setInputText(''); //Clear input text once todo submitted
-        store.dispatch({
-            type: 'SET_INPUT_TEXT',
-            inputText: ''
-        })
-
+        setInputText(''); //Clear input text once todo submitted
+        
     };
 
     // statusHandler: event function sets status state
     // to the passed event's target's value
     const statusHandler = (e) => {
+
         //setStatus(e.target.value);
+
+        //console.log("Filter status target "+e.target.value); //debug print
 
         store.dispatch({
             type: 'SET_FILTER_STATUS',
@@ -56,13 +58,11 @@ const Form = ({store}) => {
 
     };
 
-    var myString = "yes";
-
     return(
               
         <form>
         {/* sets the input value in the form while having an onChange to the input text handler */}
-        <input value ={store.getState().inputText} onChange={inputTextHandler} type="text" className="todo-input" />
+        <input value ={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
         
          {/* onClick button is set to the submit handler */}        
         <button onClick={submitTodoHandler} className="todo-button" type="submit">
