@@ -1,12 +1,13 @@
-import React from 'react';
-
 import Todo from './Todo';
+import { useSelector, connect } from "react-redux"
 
 /*
  * TodoList: Renders a todo component for each todo in the
  * passed filteredTodos array
  */
-const TodoList = ({ todos, setTodos, filteredTodos }) => {
+const TodoList = () => {
+
+    const filteredTodos = useSelector(store => store.filteredTodos);
 
     return(
 
@@ -14,20 +15,14 @@ const TodoList = ({ todos, setTodos, filteredTodos }) => {
             <ul className="todo-list"> 
                 {filteredTodos.map((todo) => ( //Map: Cycles through each element of array (filteredTodos array)
                     //Render a Todo component for each element of array
-                    <Todo 
-                        setTodos={setTodos} 
-                        todos={todos} 
-                        key={todo.id} 
-                        todo={todo}
-                        text={todo.text} 
-                    />
+                    <Todo todo={todo} key={todo.id} />
                 ))}
             </ul>
-        </div>
+        </div> 
         
     );
 
 };
 
-export default TodoList;
+export default connect()(TodoList);
 
