@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { getLocalTodos, saveLocalTodos } from './localStorage.js';
 
 
 // initialize the initialState variable for input text, todos array, filter status, and filtered todos array
@@ -248,12 +249,23 @@ const todoReducer = (state = {}, action) => {
 
 }
 
+const persistedState = getLocalTodos();
+
 //Create store using main reducer + initial state
 //3rd parameter for Redux Dev Tools extension usage
 const store = createStore(
   todoReducer, 
-  initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  persistedState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+
+store.subscribe(() => {
+  saveLocalTodos({
+    todoArray: store.getState().todoArray,
+    filteredTodos: store.getState().filteredTodos,
+  });
+});
 
 //Wrap components with Provider
 ReactDOM.render(
