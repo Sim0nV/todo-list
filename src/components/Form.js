@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
 
 /*
  * Form: Component renders input field and filtering dropdown.
  * Also updates inputText and todos states based on user input
  */
-const Form = ({store}) => {
+const Form = () => {
     
-    const [inputText, setInputText] = useState(""); // holds text that is within the input form
+    const inputText = useSelector(store => store.inputText);
+    const dispatch = useDispatch();
 
     // inputTextHandler: Event function sets input text state to
     // the passed event's target's value
     const inputTextHandler = (e) => {    
-        setInputText(e.target.value);
+        //setInputText(e.target.value);
         
         //console.log("e.target.value: "+e.target.value); //debug print
+
+        dispatch({
+            type: 'SET_INPUT_TEXT',
+            inputText: e.target.value,
+        });    
+    
     };
 
     
@@ -32,14 +39,19 @@ const Form = ({store}) => {
         
         //Add todo to todos array
 
-        store.dispatch({
+        dispatch({
             type: 'ADD_TODO',
             text: inputText,
             completed: false,
             id: Math.random() * 1000
-        })
+        });
 
-        setInputText(''); //Clear input text once todo submitted
+        //setInputText(''); //Clear input text once todo submitted
+
+        dispatch({
+            type: 'SET_INPUT_TEXT',
+            inputText: '',
+        });  
         
     };
 
@@ -51,7 +63,7 @@ const Form = ({store}) => {
 
         //console.log("Filter status target "+e.target.value); //debug print
 
-        store.dispatch({
+        dispatch({
             type: 'SET_FILTER_STATUS',
             filterStatus: e.target.value
         })
