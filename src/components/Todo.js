@@ -1,14 +1,13 @@
 import React from 'react';
 import { useDispatch } from "react-redux"
 
-// set Todo function to the variables of text, todo, todos, and setTodos
 /*
  * Todo: Renders todo item's text, complete and trash buttons.
  * Handles deleting/completing items when respective buttons clicked.
  */
-const Todo = ( {todo}, {key} ) => {
+const Todo = ( {todo} ) => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // to dispatch to the Redux store
 
     // deleteHandler: event function sets todos to all elements 
     // except those that match the current todo's id

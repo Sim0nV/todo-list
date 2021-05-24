@@ -2,15 +2,15 @@ import { useSelector, useDispatch } from "react-redux"
 
 /*
  * Form: Component renders input field and filtering dropdown.
- * Also updates inputText and todos states based on user input
+ * Also updates inputText and todo array states based on user input
  */
 const Form = () => {
     
-    const inputText = useSelector(store => store.inputText);
-    const dispatch = useDispatch();
+    const inputText = useSelector(store => store.inputText); // state holds text inside input field
+    const dispatch = useDispatch(); // to dispatch to the Redux store
 
     // inputTextHandler: Event function sets input text state to
-    // the passed event's target's value
+    // the passed event's target's value (input field's text)
     const inputTextHandler = (e) => {    
         //setInputText(e.target.value);
         
@@ -23,7 +23,6 @@ const Form = () => {
     
     };
 
-    
     // submitTodoHandler: Event function adds contents of inputText state
     // to the todos array, then clears the inputText state
     const submitTodoHandler = (e) => {
@@ -84,7 +83,7 @@ const Form = () => {
         </button>
         
         {/* div section for select which includes the values for... */}                
-        {/* onChange(status handler), and options all, completed, and uncompleted */}      
+        {/* onChange(status handler), and filter options all, completed, and uncompleted */}      
         <div className="select">
             <select onChange={statusHandler} name="todos" className="filter-todo">
             <option value="all">All</option>
