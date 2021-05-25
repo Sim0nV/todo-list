@@ -1,4 +1,6 @@
 import { useSelector, useDispatch } from "react-redux" 
+import { v4 as uuidv4 } from 'uuid'; // for unique ID
+
 // useSelector: to get states from store, useDispatch: to get the ability to dispatch
 
 /*
@@ -41,7 +43,7 @@ const Form = () => {
             type: 'ADD_TODO',
             text: inputText,
             completed: false,
-            id: Math.random() * 1000
+            id: uuidv4(), // unique ID
         });
 
         // Reset input text to blank
