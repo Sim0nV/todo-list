@@ -1,21 +1,24 @@
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux" 
+// useSelector: to get states from store, useDispatch: to get the ability to dispatch
 
 /*
- * Form: Component renders input field and filtering dropdown.
+ * Form: Component returns JSX input field and filtering dropdown.
  * Also updates inputText and todo array states based on user input
+ * return value: JSX elements for input field and filtering dropdown
  */
 const Form = () => {
     
     const inputText = useSelector(store => store.inputText); // state holds text inside input field
     const dispatch = useDispatch(); // to dispatch to the Redux store
 
-    // inputTextHandler: Event function sets input text state to
-    // the passed event's target's value (input field's text)
+    /* 
+     * inputTextHandler: Event function dispatches the passed event's 
+     * target's value (input field's text) to the input text state.
+     * Should be called if any changes to input field
+     * parameters: Input field event
+     */
     const inputTextHandler = (e) => {    
-        //setInputText(e.target.value);
         
-        //console.log("e.target.value: "+e.target.value); //debug print
-
         dispatch({
             type: 'SET_INPUT_TEXT',
             inputText: e.target.value,
@@ -23,21 +26,17 @@ const Form = () => {
     
     };
 
-    // submitTodoHandler: Event function adds contents of inputText state
-    // to the todos array, then clears the inputText state
+    /* 
+     * submitTodoHandler: Event function adds submitted todo to
+     * todo array state, then clears the inputText state
+     * Should be called if todo submitted
+     * parameters: todo submission event
+     */
     const submitTodoHandler = (e) => {
 
-        e.preventDefault(); // So event doesn't do its default behavior of refreshing
-
-        // ids: LATER install package for UNIQUE number rather than random!! DEBUG
-        /*
-        setTodos([
-            ...todos, {text: inputText, completed: false, id: Math.random() * 1000}
-        ]);*/
+        e.preventDefault(); // Prevent event from doing its default behavior of refreshing
         
-        
-        //Add todo to todos array
-
+        // Add todo to todos array
         dispatch({
             type: 'ADD_TODO',
             text: inputText,
@@ -45,8 +44,7 @@ const Form = () => {
             id: Math.random() * 1000
         });
 
-        //setInputText(''); //Clear input text once todo submitted
-
+        // Reset input text to blank
         dispatch({
             type: 'SET_INPUT_TEXT',
             inputText: '',
@@ -54,18 +52,17 @@ const Form = () => {
         
     };
 
-    // statusHandler: event function sets status state
-    // to the passed event's target's value
+    /* 
+     * statusHandler: Event function dispatches new filter status 
+     * to filter status state. Should be called if filter state changed
+     * parameters: Filter status change event
+     */
     const statusHandler = (e) => {
-
-        //setStatus(e.target.value);
-
-        //console.log("Filter status target "+e.target.value); //debug print
 
         dispatch({
             type: 'SET_FILTER_STATUS',
             filterStatus: e.target.value
-        })
+        });
 
     };
 

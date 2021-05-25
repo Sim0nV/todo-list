@@ -3,17 +3,21 @@ import { useDispatch } from "react-redux"
 
 /*
  * Todo: Renders todo item's text, complete and trash buttons.
- * Handles deleting/completing items when respective buttons clicked.
+ * Handles deleting/completing items when respective buttons clicked
+ * by dispatching to update state
+ * parameters: todo to render, key of todo (to avoid unique keys error)
+ * return value: JSX elements for todo item, complete button, and trash button
  */
-const Todo = ( {todo} ) => {
+const Todo = ( {todo, id} ) => {
 
-    const dispatch = useDispatch(); // to dispatch to the Redux store
+    const dispatch = useDispatch(); // used to dispatch to the Redux store
 
-    // deleteHandler: event function sets todos to all elements 
-    // except those that match the current todo's id
+    /* 
+     * deleteHandler: Event function dispatches to todo array state
+     * to delete current todo from array.
+     * Should be called if delete button clicked.
+     */
     const deleteHandler = () => {
-
-        //setTodos(todos.filter((element) => element.id !== todo.id));
 
         dispatch({
             type: 'DELETE_TODO',
@@ -21,41 +25,19 @@ const Todo = ( {todo} ) => {
         });
 
     };
-    
-    // completeHandler: event function. if passed todo within todos
-    // array, marks it as complete 
+
+    /* 
+     * deleteHandler: Event function dispatches to todo array state
+     * to toggle current todo's complete flag
+     * Should be called if complete button clicked.
+     */
     const completeHandler = () => {
         
-        /*
-        // Set todos to what map's arrow function returns:
-        setTodos(todos.map((item) => {
-
-            // For all items within todos array:
-
-            // If current item matches current todo's id:
-            if (item.id === todo.id) {
-
-                // return props of matching id, toggle completed flag
-                return { 
-
-                    ...item, // id, input text, other todo props
-                    completed: !item.completed // toggle
-
-                };
-
-            }
-
-            return item; // otherwise, just return item w/ no changes
-            
-        })
-        );
-
-        */
-
         dispatch({
             type: 'TOGGLE_COMPLETE_TODO',
             id:   todo.id
         });
+
     };
     
     //Render passed todo item with complete and delete buttons

@@ -13,13 +13,13 @@ export const getLocalTodos = () => {
     }
   }; 
 
-  /*
+/*
  * saveLocalTodos: Saves local todos from passed state if valid
  */
 export const saveLocalTodos = (state) => {
-try {
-    const todoArray = JSON.stringify(state);
-    localStorage.setItem('state', todoArray);
-} catch {
-}
+  try {
+      const todoArray = JSON.stringify(state);
+      localStorage.setItem('state', todoArray);
+  } catch {
+  }
 };
