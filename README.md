@@ -19,8 +19,8 @@ Project is created with:
 	
 ## Features
 * Todo Filtering
-* Dark Mode
 * Local Storage
+* Dark Mode
 * UUIDs for each Todo
 * Extra hover effects for buttons
 
