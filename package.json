@@ -42,5 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://Sim0nV.github.io/todo-list"
+  "homepage": "https://Sim0nV.github.io/todo-list",
+  "devDependencies": {
+    "@testing-library/dom": "^8.19.0"
+  }
 }
