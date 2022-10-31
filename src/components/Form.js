@@ -70,7 +70,7 @@ const Form = () => {
 
     return(
               
-        <form>
+        <form data-testid="form">
         {/* sets the input value in the form while having an onChange to the input text handler */}
         <input value ={inputText} onChange={inputTextHandler} type="text" className="todo-input" />
         
