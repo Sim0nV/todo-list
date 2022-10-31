@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import React, {useState} from "react";
 import { v4 as uuidv4 } from "uuid"; // for unique ID
 
 // useSelector: to get states from store, useDispatch: to get the ability to dispatch
@@ -9,8 +9,8 @@ import { v4 as uuidv4 } from "uuid"; // for unique ID
  * return value: JSX elements for input field and filtering dropdown
  */
 const Form = () => {
-  const inputText = useSelector((store) => store.inputText); // state holds text inside input field
-  const dispatch = useDispatch(); // to dispatch to the Redux store
+  const [inputText, setInputText] = useState(""); // state holds text inside input field
+  // const dispatch = useDispatch(); // to dispatch to the Redux store
 
   /*
    * inputTextHandler: Event function dispatches the passed event's
@@ -19,10 +19,11 @@ const Form = () => {
    * parameters: Input field event
    */
   const inputTextHandler = (e) => {
-    dispatch({
-      type: "SET_INPUT_TEXT",
-      inputText: e.target.value,
-    });
+    // dispatch({
+    //   type: "SET_INPUT_TEXT",
+    //   inputText: e.target.value,
+    // });
+    setInputText(e.target.value);
   };
 
   /*
@@ -35,18 +36,19 @@ const Form = () => {
     e.preventDefault(); // Prevent event from doing its default behavior of refreshing
 
     // Add todo to todos array
-    dispatch({
-      type: "ADD_TODO",
-      text: inputText,
-      completed: false,
-      id: uuidv4(), // unique ID
-    });
+    // dispatch({
+    //   type: "ADD_TODO",
+    //   text: inputText,
+    //   completed: false,
+    //   id: uuidv4(), // unique ID
+    // });
 
     // Reset input text to blank
-    dispatch({
-      type: "SET_INPUT_TEXT",
-      inputText: "",
-    });
+    // dispatch({
+    //   type: "SET_INPUT_TEXT",
+    //   inputText: "",
+    // });
+    setInputText("");
   };
 
   /*
@@ -55,10 +57,10 @@ const Form = () => {
    * parameters: Filter status change event
    */
   const statusHandler = (e) => {
-    dispatch({
-      type: "SET_FILTER_STATUS",
-      filterStatus: e.target.value,
-    });
+    // dispatch({
+    //   type: "SET_FILTER_STATUS",
+    //   filterStatus: e.target.value,
+    // });
   };
 
   return (

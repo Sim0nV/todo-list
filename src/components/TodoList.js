@@ -1,5 +1,4 @@
 import Todo from "./Todo";
-import { useSelector } from "react-redux";
 
 /*
  * TodoList: Returns a todo element for each todo in the
@@ -8,7 +7,8 @@ import { useSelector } from "react-redux";
  */
 const TodoList = () => {
   // filtered todos array state
-  const filteredTodos = useSelector((store) => store.filteredTodos);
+  // const filteredTodos = useSelector((store) => store.filteredTodos);
+  const filteredTodos = [];
 
   return (
     <div className="todo-container" data-testid="todolist">

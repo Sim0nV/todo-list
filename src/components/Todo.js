@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
 /*
  * Todo: Renders todo item's text, complete and trash buttons.
@@ -9,7 +8,7 @@ import { useDispatch } from "react-redux";
  * return value: JSX elements for todo item, complete button, and trash button
  */
 const Todo = ({ todo, id }) => {
-  const dispatch = useDispatch(); // used to dispatch to the Redux store
+  // const dispatch = useDispatch(); // used to dispatch to the Redux store
 
   /*
    * deleteHandler: Event function dispatches to todo array state
@@ -17,10 +16,10 @@ const Todo = ({ todo, id }) => {
    * Should be called if delete button clicked.
    */
   const deleteHandler = () => {
-    dispatch({
-      type: "DELETE_TODO",
-      id: todo.id,
-    });
+    // dispatch({
+    //   type: "DELETE_TODO",
+    //   id: todo.id,
+    // });
   };
 
   /*
@@ -29,10 +28,10 @@ const Todo = ({ todo, id }) => {
    * Should be called if complete button clicked.
    */
   const completeHandler = () => {
-    dispatch({
-      type: "TOGGLE_COMPLETE_TODO",
-      id: todo.id,
-    });
+    // dispatch({
+    //   type: "TOGGLE_COMPLETE_TODO",
+    //   id: todo.id,
+    // });
   };
 
   //Render passed todo item with complete and delete buttons
