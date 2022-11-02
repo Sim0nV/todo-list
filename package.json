@@ -3,18 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "gh-pages": "^3.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
-    "redux": "^4.1.0",
     "uuid": "^8.3.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "zustand": "^4.1.3"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -42,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://Sim0nV.github.io/todo-list"
+  "homepage": "https://Sim0nV.github.io/todo-list",
+  "devDependencies": {
+    "@testing-library/dom": "^8.19.0"
+  }
 }
