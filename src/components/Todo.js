@@ -1,7 +1,7 @@
 import React from "react";
 import { useBoundStore } from "../stores/useBoundStore";
 
-/*
+/**
  * Todo: Renders todo item's text, complete and trash buttons.
  * Handles deleting/completing items when respective buttons clicked
  * by dispatching to update state
@@ -11,9 +11,8 @@ import { useBoundStore } from "../stores/useBoundStore";
 const Todo = ({ todo, id }) => {
   const toggleCompleteTodo = useBoundStore((state) => state.toggleCompleteTodo);
   const deleteTodo = useBoundStore((state) => state.deleteTodo);
-  // const dispatch = useDispatch(); // used to dispatch to the Redux store
 
-  /*
+  /**
    * deleteHandler: Event function dispatches to todo array state
    * to delete current todo from array.
    * Should be called if delete button clicked.
@@ -22,8 +21,8 @@ const Todo = ({ todo, id }) => {
     deleteTodo(todo);
   };
 
-  /*
-   * deleteHandler: Event function dispatches to todo array state
+  /**
+   * completeHandler: Event function dispatches to todo array state
    * to toggle current todo's complete flag
    * Should be called if complete button clicked.
    */

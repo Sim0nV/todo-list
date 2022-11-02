@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // for unique ID
 import { useBoundStore } from "../stores/useBoundStore";
 
-// useSelector: to get states from store, useDispatch: to get the ability to dispatch
-
-/*
+/**
  * Form: Component returns JSX input field and filtering dropdown.
  * Also updates inputText and todo array states based on user input
  * return value: JSX elements for input field and filtering dropdown
@@ -15,17 +13,15 @@ const Form = () => {
   const setFilterStatus = useBoundStore((state) => state.setFilterStatus);
   // const dispatch = useDispatch(); // to dispatch to the Redux store
 
-  /*
-   * inputTextHandler: Event function dispatches the passed event's
-   * target's value (input field's text) to the input text state.
-   * Should be called if any changes to input field
+  /**
+   * inputTextHandler: Sets input text state to new value
    * parameters: Input field event
    */
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
 
-  /*
+  /**
    * submitTodoHandler: Event function adds submitted todo to
    * todo array state, then clears the inputText state
    * Should be called if todo submitted
@@ -37,7 +33,7 @@ const Form = () => {
     let newTodo = {
       text: inputText,
       completed: false,
-      id: uuidv4()
+      id: uuidv4(),
     };
 
     // Add todo to todos array
@@ -45,7 +41,7 @@ const Form = () => {
     setInputText("");
   };
 
-  /*
+  /**
    * statusHandler: Event function dispatches new filter status
    * to filter status state. Should be called if filter state changed
    * parameters: Filter status change event

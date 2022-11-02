@@ -1,15 +1,16 @@
 import Todo from "./Todo";
 import { useBoundStore } from "../stores/useBoundStore";
 
-/*
+/**
  * TodoList: Returns a todo element for each todo in the
- * passed filteredTodos array state
+ * filtered todosArray state
  * return value: JSX elements for todo list and each todo
  */
 const TodoList = () => {
   const todosArray = useBoundStore((state) => state.todosArray);
   const filterStatus = useBoundStore((state) => state.filterStatus);
 
+  // Set filteredTodos based on current filter status
   const filteredTodos = todosArray.filter((todo) => {
     return (
       filterStatus === "all" ||
