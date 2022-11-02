@@ -1,4 +1,5 @@
 import React from "react";
+import { useStore } from "../stores/useStore";
 
 /*
  * Todo: Renders todo item's text, complete and trash buttons.
@@ -8,6 +9,7 @@ import React from "react";
  * return value: JSX elements for todo item, complete button, and trash button
  */
 const Todo = ({ todo, id }) => {
+  const deleteTodo = useStore((state) => state.deleteTodo);
   // const dispatch = useDispatch(); // used to dispatch to the Redux store
 
   /*
@@ -16,10 +18,7 @@ const Todo = ({ todo, id }) => {
    * Should be called if delete button clicked.
    */
   const deleteHandler = () => {
-    // dispatch({
-    //   type: "DELETE_TODO",
-    //   id: todo.id,
-    // });
+    deleteTodo(todo);
   };
 
   /*
