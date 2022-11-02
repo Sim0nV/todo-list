@@ -12,6 +12,7 @@ import { useStore } from "../stores/useStore";
 const Form = () => {
   const [inputText, setInputText] = useState(""); // state holds text inside input field
   const addTodo = useStore((state) => state.addTodo);
+  const setFilterStatus = useStore((state) => state.setFilterStatus);
   // const dispatch = useDispatch(); // to dispatch to the Redux store
 
   /*
@@ -50,10 +51,7 @@ const Form = () => {
    * parameters: Filter status change event
    */
   const statusHandler = (e) => {
-    // dispatch({
-    //   type: "SET_FILTER_STATUS",
-    //   filterStatus: e.target.value,
-    // });
+    setFilterStatus(e.target.value);
   };
 
   return (
