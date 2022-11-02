@@ -8,11 +8,20 @@ import { useStore } from "../stores/useStore";
  */
 const TodoList = () => {
   const todosArray = useStore((state) => state.todosArray);
+  const filterStatus = useStore((state) => state.filterStatus);
+
+  const filteredTodos = todosArray.filter((todo) => {
+    return (
+      filterStatus === "all" ||
+      (filterStatus === "completed" && todo.completed) ||
+      (filterStatus === "uncompleted" && !todo.completed)
+    );
+  });
 
   return (
     <div className="todo-container" data-testid="todolist">
       <ul className="todo-list">
-        {todosArray.map(
+        {filteredTodos.map(
           (
             todo // Map: Cycles through each element of array (filteredTodos array)
           ) => (
