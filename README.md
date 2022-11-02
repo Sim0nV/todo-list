@@ -1,6 +1,6 @@
 # Todo List App
 
-Simple todo list app created with Javascript, CSS, and React-Redux.
+Simple todo list app React app with Zustand state management and testing via Jest/React Testing Library.
 
 URL: https://sim0nv.github.io/todo-list/
 
@@ -13,8 +13,8 @@ URL: https://sim0nv.github.io/todo-list/
 ## Technologies
 Project is created with:
 * React version: 17.0.2
-* React-redux version: 7.2.4
-* Redux toolkit version: 1.5.1
+* Zustand version: 4.1.3
+* React Testing Library version: 11.2.7
 * UUID version: 8.3.2
 	
 ## Features
@@ -32,3 +32,4 @@ $ cd ../todo-list
 $ npm install
 $ npm start
 ```
+To test this project, run ``npm run test`` instead of ``npm start``.
