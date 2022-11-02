@@ -7,5 +7,9 @@ export const useStore = create((set) => ({
   setFilterStatus: (filterStatus) =>
     set(() => ({ filterStatus: filterStatus })),
   addTodo: (todo) =>
-    set((state) => ({ todosArray: state.todosArray.concat(todo) }))
+    set((state) => ({ todosArray: state.todosArray.concat(todo) })),
+  deleteTodo: (todo) => 
+    set((state) => ({
+      todosArray: state.todosArray.filter((currTodo) => currTodo !== todo),
+    })),
 }));
