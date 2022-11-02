@@ -32,15 +32,22 @@ const Todo = ({ todo, id }) => {
 
   //Render passed todo item with complete and delete buttons
   return (
-    <div className="todo">
+    <div className="todo" data-testid={"todo-" + todo.id}>
       {" "}
       {/* $ means: If passed todo completed, 
             add the completed class (strikethrough). Else do nothing */}
-      <li className={`todo-item ${todo.completed ? "completed" : ""}`}>
+      <li
+        className={`todo-item ${todo.completed ? "completed" : ""}`}
+        data-testid={"todo-text-" + todo.id}
+      >
         {todo.text}
       </li>
       {/* run completeHandler when complete button clicked */}
-      <button onClick={completeHandler} className="complete-btn">
+      <button
+        onClick={completeHandler}
+        className="complete-btn"
+        data-testid={"todo-complete-" + todo.id}
+      >
         <i className="fas fa-check"></i>
       </button>
       <button onClick={deleteHandler} className="trash-btn">
