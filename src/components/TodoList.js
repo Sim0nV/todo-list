@@ -1,4 +1,5 @@
 import Todo from "./Todo";
+import { useStore } from "../stores/useStore";
 
 /*
  * TodoList: Returns a todo element for each todo in the
@@ -6,14 +7,12 @@ import Todo from "./Todo";
  * return value: JSX elements for todo list and each todo
  */
 const TodoList = () => {
-  // filtered todos array state
-  // const filteredTodos = useSelector((store) => store.filteredTodos);
-  const filteredTodos = [];
+  const todosArray = useStore((state) => state.todosArray);
 
   return (
     <div className="todo-container" data-testid="todolist">
       <ul className="todo-list">
-        {filteredTodos.map(
+        {todosArray.map(
           (
             todo // Map: Cycles through each element of array (filteredTodos array)
           ) => (
