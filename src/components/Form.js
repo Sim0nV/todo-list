@@ -1,5 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // for unique ID
+import { useStore } from "../stores/useStore";
 
 // useSelector: to get states from store, useDispatch: to get the ability to dispatch
 
@@ -10,6 +11,7 @@ import { v4 as uuidv4 } from "uuid"; // for unique ID
  */
 const Form = () => {
   const [inputText, setInputText] = useState(""); // state holds text inside input field
+  const addTodo = useStore((state) => state.addTodo);
   // const dispatch = useDispatch(); // to dispatch to the Redux store
 
   /*
@@ -19,10 +21,6 @@ const Form = () => {
    * parameters: Input field event
    */
   const inputTextHandler = (e) => {
-    // dispatch({
-    //   type: "SET_INPUT_TEXT",
-    //   inputText: e.target.value,
-    // });
     setInputText(e.target.value);
   };
 
@@ -35,19 +33,14 @@ const Form = () => {
   const submitTodoHandler = (e) => {
     e.preventDefault(); // Prevent event from doing its default behavior of refreshing
 
-    // Add todo to todos array
-    // dispatch({
-    //   type: "ADD_TODO",
-    //   text: inputText,
-    //   completed: false,
-    //   id: uuidv4(), // unique ID
-    // });
+    let newTodo = {
+      text: inputText,
+      completed: false,
+      id: uuidv4()
+    };
 
-    // Reset input text to blank
-    // dispatch({
-    //   type: "SET_INPUT_TEXT",
-    //   inputText: "",
-    // });
+    // Add todo to todos array
+    addTodo(newTodo);
     setInputText("");
   };
 
