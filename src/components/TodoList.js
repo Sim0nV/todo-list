@@ -1,5 +1,5 @@
 import Todo from "./Todo";
-import { useStore } from "../stores/useStore";
+import { useBoundStore } from "../stores/useBoundStore";
 
 /*
  * TodoList: Returns a todo element for each todo in the
@@ -7,8 +7,8 @@ import { useStore } from "../stores/useStore";
  * return value: JSX elements for todo list and each todo
  */
 const TodoList = () => {
-  const todosArray = useStore((state) => state.todosArray);
-  const filterStatus = useStore((state) => state.filterStatus);
+  const todosArray = useBoundStore((state) => state.todosArray);
+  const filterStatus = useBoundStore((state) => state.filterStatus);
 
   const filteredTodos = todosArray.filter((todo) => {
     return (

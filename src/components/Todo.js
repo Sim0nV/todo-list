@@ -1,5 +1,5 @@
 import React from "react";
-import { useStore } from "../stores/useStore";
+import { useBoundStore } from "../stores/useBoundStore";
 
 /*
  * Todo: Renders todo item's text, complete and trash buttons.
@@ -9,8 +9,8 @@ import { useStore } from "../stores/useStore";
  * return value: JSX elements for todo item, complete button, and trash button
  */
 const Todo = ({ todo, id }) => {
-  const toggleCompleteTodo = useStore((state) => state.toggleCompleteTodo);
-  const deleteTodo = useStore((state) => state.deleteTodo);
+  const toggleCompleteTodo = useBoundStore((state) => state.toggleCompleteTodo);
+  const deleteTodo = useBoundStore((state) => state.deleteTodo);
   // const dispatch = useDispatch(); // used to dispatch to the Redux store
 
   /*

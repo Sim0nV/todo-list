@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // for unique ID
-import { useStore } from "../stores/useStore";
+import { useBoundStore } from "../stores/useBoundStore";
 
 // useSelector: to get states from store, useDispatch: to get the ability to dispatch
 
@@ -11,8 +11,8 @@ import { useStore } from "../stores/useStore";
  */
 const Form = () => {
   const [inputText, setInputText] = useState(""); // state holds text inside input field
-  const addTodo = useStore((state) => state.addTodo);
-  const setFilterStatus = useStore((state) => state.setFilterStatus);
+  const addTodo = useBoundStore((state) => state.addTodo);
+  const setFilterStatus = useBoundStore((state) => state.setFilterStatus);
   // const dispatch = useDispatch(); // to dispatch to the Redux store
 
   /*
