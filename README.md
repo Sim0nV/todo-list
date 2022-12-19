@@ -1,6 +1,6 @@
 # Todo List App
 
-Simple todo list app React app with Zustand state management and testing via Jest/React Testing Library.
+A todo list React app with Zustand state management and testing via Jest/React Testing Library.
 
 URL: https://sim0nv.github.io/todo-list/
 
